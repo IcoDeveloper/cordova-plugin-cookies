@@ -12,7 +12,7 @@ import android.webkit.CookieManager;
 public class CookiesPlugin extends CordovaPlugin {
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
         if (action.equals("getCookie")) {
             this.getCookie(args, callbackContext);
             return true;
@@ -20,9 +20,9 @@ public class CookiesPlugin extends CordovaPlugin {
         return false;
     }
 
-    private void getCookie(JSONArray args, CallbackContext callbackContext) {
+    private void getCookie(JSONArray args, final CallbackContext callbackContext) {
         // get url argument
-        String url = args.optString(0);
+        final String url = args.optString(0);
 
         // check url argument
         if (url == null || url.length() == 0) {
